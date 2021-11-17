@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package rpc_server;
+
+import "google/api/annotations.proto";
+
+option go_package = "internal/rpc_server";
+
+service OrgInfoService {
+    rpc Fetch(Request) returns (Response) {
+        option (google.api.http) = {
+            get: "/inn/{INN}"
+        };
+    }
+}
+
+message Request {
+    string INN = 1;
+}
+
+message Response {
+    string INN = 1;
+    string OrgName = 2;
+    string Director = 3;
+    string OGRN = 4;
+}
